@@ -1,0 +1,226 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="text-center">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of student; let i = index" class="text-center">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ student.s_name }}</td>
+      <td>{{ student.s_age }}</td>
+      <td>{{ student.s_contact_number }}</td>
+      <td>{{ student.g_address }}</td>
+
+      <td>
+        <div class="d-flex justify-content-center">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="viewStudent(student)"
+          >
+            View
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-info mx-4"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal2"
+            (click)="editStudent(student)"
+          >
+          Edit
+          </button>
+
+          <!-- <button type="button" class="btn btn-outline-primary">View</button> -->
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="delete(student.id)"
+          >
+            Delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" (click)="loader()" class="btn btn-outline-warning">
+  Reload
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <h4 class="mb-3 fw-bold text-primary p-2">Student Information</h4>
+        </div>
+        <hr />
+        <div class="container">
+          <table class="table text-start justify-content-center">
+            <tr>
+              <th scope="row">Name:</th>
+              <td>{{ vStudent.s_name }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Age:</th>
+              <td>{{ vStudent.s_age }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Contact:</th>
+              <td>{{ vStudent.s_contact_number }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="text-center">
+          <h4 class="mb-3 fw-bold text-primary p-2">Guardian Information</h4>
+        </div>
+        <hr />
+        <div class="container">
+          <table class="table table-striped text-start">
+            <tr>
+              <th scope="row">Name:</th>
+              <td>{{ vStudent.g_name }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Address:</th>
+              <td>{{ vStudent.g_address }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Contact:</th>
+              <td>{{ vStudent.g_contact_number }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal 2 -->
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+            <h3>Student Information</h3>
+            <hr />
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="s_name" class="form-label">Name</label>
+                </div>
+                <div class="col-9">
+                  <input  [(ngModel)]="eStudent.s_name" type="txt" class="form-control" id="s_name" />
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="s_age" class="form-label">Age</label>
+                </div>
+                <div class="col-9">
+                  <input type="txt" class="form-control" id="s_age"   [(ngModel)]="eStudent.s_age"  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="s_contact" class="form-label"    >Contact</label>
+                </div>
+                <div class="col-9">
+                  <input type="txt" class="form-control" id="s_contact"  [(ngModel)]="eStudent.s_contact_number" />
+                </div>
+              </div>
+            </div>
+      
+            <h3>Guardian Information</h3>
+            <hr />
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="g_name" class="form-label" >Name</label>
+                </div>
+                <div class="col-9">
+                  <input type="txt" class="form-control" id="g_name"   [(ngModel)]="eStudent.g_name"  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="g_address" class="form-label">Address</label>
+                </div>
+                <div class="col-9">
+                  <input type="txt" class="form-control" id="g_address"   [(ngModel)]="eStudent.g_address"  >
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-3">
+                  <label for="g_contact" class="form-label">Contact</label>
+                </div>
+                <div class="col-9">
+                  <input type="txt" class="form-control" id="g_contact"   [(ngModel)]="eStudent.g_contact_number"   />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col"></div>
+              <div class="col">
+                <div class="row">
+                  
+                  <div class="">
+                    <button  (click)="updateStudent()" type="submit" class="btn btn-outline-primary w-100"  >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,105 @@
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <div
+        class=""
+        style="
+          clip-path: circle();
+          width: 200px;
+          height: 200px;
+          overflow: hidden;
+        "
+      >
+        <img
+          src="https://www.icon0.com/free/static2/preview2/stock-photo-kid-boy-avatar-people-icon-character-cartoon-32917.jpg"
+          alt=""
+          width="100%"
+          height="100%"
+          style="object-fit: cover"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <h3>Student Information</h3>
+      <hr />
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="s_name" class="form-label">Name</label>
+          </div>
+          <div class="col-9">
+            <input  [(ngModel)]="student.s_name" type="txt" class="form-control" id="s_name" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="s_age" class="form-label">Age</label>
+          </div>
+          <div class="col-9">
+            <input type="txt" class="form-control" id="s_age"   [(ngModel)]="student.s_age" [disabled]="!student.s_name" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="s_contact" class="form-label"    >Contact</label>
+          </div>
+          <div class="col-9">
+            <input type="txt" class="form-control" id="s_contact" [disabled]="!student.s_age" [(ngModel)]="student.s_contact_number" />
+          </div>
+        </div>
+      </div>
+
+      <h3>Guardian Information</h3>
+      <hr />
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="g_name" class="form-label" >Name</label>
+          </div>
+          <div class="col-9">
+            <input type="txt" class="form-control" id="g_name"   [(ngModel)]="student.g_name" [disabled]="!student.s_contact_number"  required />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="g_address" class="form-label">Address</label>
+          </div>
+          <div class="col-9">
+            <input type="txt" class="form-control" id="g_address"   [(ngModel)]="student.g_address"[disabled]="!student.g_name"  >
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-3">
+            <label for="g_contact" class="form-label">Contact</label>
+          </div>
+          <div class="col-9">
+            <input type="txt" class="form-control" id="g_contact"   [(ngModel)]="student.g_contact_number" [disabled]="!student.g_address"  />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <div class="row">
+            <div class="col-6">
+              <button (click)="clear()" type="submit" class="btn btn-outline-info w-100" [disabled]="!student.s_name" >
+                Clear
+              </button>
+            </div>
+            <div class="col-6">
+              <button  (click)="register()" type="submit" class="btn btn-outline-primary w-100" [disabled]="!student.g_contact_number" >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
